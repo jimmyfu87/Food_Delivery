@@ -68,7 +68,7 @@
 
 - main.py
     
-    - 執行主程式，會啟動一個API引擎，在指定port部署
+    - 執行主程式，會啟動一個API引擎並部署
 
 - Dockerfile
     
@@ -117,7 +117,7 @@
 
 ## `restaurant`
 ### 用途： 
-- 處理購物車的功能
+- 處理餐廳以及菜單的功能
 - restaurant/: 可取得餐廳的列表
 - restaurant/{restaurant_id}: 可取得該餐廳的菜單並進行點餐
 
