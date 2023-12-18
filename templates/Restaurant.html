@@ -1,0 +1,150 @@
+<html>
+
+<head>
+  <title>餐廳列表</title>
+  <!-- <link rel="stylesheet" href="/stylesheets/style.css"> -->
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+  <script type=" text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8"
+    src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+  <style>
+    #dataTable {
+      display: inline-block;
+      border: 0.15em solid white;
+      border-radius: 1em;
+      white-space: normal;
+      background-color: white;
+      width: 100%;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background-color: gainsboro;
+    }
+
+    .loading {
+      position: absolute;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+
+    .loading .mask {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #444;
+      opacity: 0.5;
+    }
+
+    #spinner-div {
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      z-index: 2;
+    }
+  </style>
+
+</head>
+
+<body onload="">
+  <!-- Responsive navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-lg-12">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="../cart_item" class="btn btn-secondary">購物車</a>
+        <a href="../order" class="btn btn-secondary">訂單列表</a>
+        <a href="../restaurant" class="btn btn-secondary">餐廳列表</a>
+      </div>
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary" onclick="logout()">登出</button>
+      </div>
+    </div>
+    </div>
+  </nav>
+  <!-- Header-->
+
+  <div class="container px-lg-12">
+    <div class="loading">
+      <div class="mask"></div>
+      <div id="spinner-div" class="pt-5">
+        <div>
+          <button class="btn btn-primary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="visually-hidden">Loading...</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <br>
+
+    <div class="card" id="datatable_card">
+      <div class="card-header text-center">
+        <a  id="member_id">{{member_id}}</a>
+      </div>
+      <div class="card-body mx-auto">
+        <div class="text-center">餐廳列表</div>
+        <br>
+        <table class="table table-bordered table-medium" id="datatable">
+          <thead>
+            <tr>
+              <th scope="col" >餐廳名稱</th>
+              <th scope="col" >餐廳地址</th>
+              <th scope="col" >菜單</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for restaurant in restaurant_rows%}
+            <tr id={{restaurant.id}}>
+              <th scope="row">{{restaurant.restaurant_name}}</th>
+              <td>{{restaurant.restaurant_address}}</td>
+              <td><a href={{restaurant.restaurant_url}}>餐廳菜單</a></td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card-footer text-center">
+      </div>
+
+    </div>
+
+
+
+  </div>
+    <!-- Footer-->
+    <footer class="py-5 bg-dark">
+  </footer>
+  <!-- Page Content-->
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', path='js/ajax.js') }}"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+<html>
